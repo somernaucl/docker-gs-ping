@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	//"io"
-	"net/http"
-	//"testing"
+	//"net/http"
+	"testing"
 
-	//"github.com/ory/dockertest/v3"
-	//"github.com/stretchr/testify/require"
+	"github.com/ory/dockertest/v3"
+	"github.com/stretchr/testify/require"
 )
 
 // The tests in this suite check if the business requirements
