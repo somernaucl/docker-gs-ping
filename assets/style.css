@@ -2,3 +2,11 @@ body{
   background-color: slategray;
   color: white;
 }
+div {
+  display: flex;
+  justify-content: center;
+}
+ul {
+  display: inline-block;
+  text-decoration: none;
+}
