@@ -42,25 +42,4 @@ func TestHealthCheck(t *testing.T) {
 	t.Cleanup(func() {
 		require.NoError(t, pool.Purge(resource), "failed to remove container")
 	})
-
-	var resp *http.Response
-
-	err = pool.Retry(func() error {
-		resp, err = http.Get(fmt.Sprint("http://localhost:", resource.GetPort("8080/tcp"), "/ping"))
-		if err != nil {
-			t.Log("container not ready, waiting...")
-			return err
-		}
-		return nil
-	})
-	require.NoError(t, err, "HTTP error")
-	defer resp.Body.Close()
-
-	require.Equal(t, http.StatusOK, resp.StatusCode, "HTTP status code")
-
-	body, err := io.ReadAll(resp.Body)
-	require.NoError(t, err, "failed to read HTTP body")
-
-	// Finally, test the business requirement!
-	require.JSONEq(t, `{"Status":"OK"}`, string(body), "does not respond with valid JSON?")
 }
