@@ -1,21 +1,31 @@
 package main
 
 import (
-	"net/http"
-	"os"
-	"log"
+	//"net/http"
+	//"os"
+	//"log"
+	"github.com/gin-gonic/contrib/static"
+	"github.com/gin-gonic/gin"
 	// "github.com/labstack/echo/v4"
 	// "github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
-        fs := http.FileServer(http.Dir("./assets"))
-        http.Handle("/assets/", fs)
-        log.Println("Listening on :8080 ...")
-        err := http.ListenAndServe(":8080", nil)
-        if err != nil {
-           log.Fatal(err)
-}
+        r := gin.Default()
+
+	r.GET("/ping", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+		"message": "pong",
+		})
+	})
+	r.Use(static.Serve("/", static.LocalFile("./assets", true)))
+	r.Run()
+        // http.Handle("/assets/", fs)
+        // log.Println("Listening on :8080 ...")
+        // err := http.ListenAndServe(":8080", nil)
+        // if err != nil {
+        //    log.Fatal(err)
+// }
 	// e := echo.New()
          
 	// e.Use(middleware.Logger())
@@ -29,9 +39,9 @@ func main() {
 	// 	return c.JSON(http.StatusOK, struct{ Status string }{Status: "OK"})
 	// })
         
-	 httpPort := os.Getenv("HTTP_PORT")
-	if httpPort == "" {
-		httpPort = "8080"
-	}
+	// httpPort := os.Getenv("HTTP_PORT")
+	//if httpPort == "" {
+	//	httpPort = "8080"
+	//}
         // e.Logger.Fatal(e.Start(":" + httpPort))
 }
