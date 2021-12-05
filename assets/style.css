@@ -1,12 +1,18 @@
 body{
   background-color: slategray;
   color: white;
+  font-family: "Verdana", sans-serif;
 }
 div {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 ul {
+  list-style-type: none;
   display: inline-block;
   text-decoration: none;
+}
+li {
+  display: inline-block;
 }
