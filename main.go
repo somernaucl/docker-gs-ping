@@ -1,6 +1,6 @@
 package main
 
-import (
+iimport (
 	"net/http"
 	"os"
 
@@ -22,11 +22,11 @@ func main() {
 	e.GET("/ping", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, struct{ Status string }{Status: "OK"})
 	})
-
+        http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 	httpPort := os.Getenv("HTTP_PORT")
 	if httpPort == "" {
 		httpPort = "8080"
 	}
-
+        http.ListenAndServe(":8081", nil)
 	e.Logger.Fatal(e.Start(":" + httpPort))
 }
