@@ -10,7 +10,7 @@ import (
 
 func main() {
         fs := http.FileServer(http.Dir("./assets"))
-        http.Handle("/home", fs)
+        http.Handle("/assets/", http.StripPrefix("/assets/", fs)
         log.Println("Listening on :8080 ...")
         err := http.ListenAndServe(":8080", nil)
         if err != nil {
