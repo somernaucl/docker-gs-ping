@@ -3,7 +3,8 @@ package main
 import (
 	//"fmt"
 	//"io"
-	//"net/http"
+	"net/http"
+	"net/http/httptest"
 	"testing"
 
 	"github.com/ory/dockertest/v3"
@@ -43,3 +44,21 @@ func TestHealthCheck(t *testing.T) {
 		require.NoError(t, pool.Purge(resource), "failed to remove container")
 	})
 }
+
+func TestHandler(t*testing.T){
+	// Form a new HTTP Request
+	//First arg is method 2nd arg is route and third is the request body "nil" = none
+	req, err:= http.NewRequest("GET", "", nil)
+	uf err != nil {
+		t.Fatal(err)
+	}
+	recorder := httptest.NewRecorder()
+
+	hf := http.HandlerFunc(handler)
+
+	hf.ServeHTTP(recorder, req)
+	if status := recorder.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v", status, http.StatusOK)
+	}
+}
+
