@@ -18,7 +18,12 @@ li {
   padding: 1rem;
   margin: 1rem;
   background-color: darkgray;
+  border-radius: 1rem;
 }
 p {
   color:limegreen;
 }
+ul li:hover {
+  background-color:darkslategray;
+}
+
