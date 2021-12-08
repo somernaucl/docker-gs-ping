@@ -21,6 +21,9 @@ li {
   border-radius: 1rem;
 }
 p {
+  margin:1rem;
+  padding:1rem;
+  background-color: darkslategray;
   color:limegreen;
 }
 ul li:hover {
