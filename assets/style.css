@@ -19,7 +19,6 @@ li {
   margin: 1rem;
   background-color: darkgray;
 }
-ul li:hover {
-  color:lightgray;
-  background-color:lightslategray;
+p {
+  color:limegreen;
 }
