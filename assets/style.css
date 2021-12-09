@@ -24,7 +24,7 @@ p {
   margin:1rem;
   padding:1rem;
   background-color: darkslategray;
-  color:limegreen;
+  color:red;
 }
 ul li:hover {
   background-color:darkslategray;
